@@ -1,0 +1,344 @@
+2026-11-23 19:48:06 | INFO | === INICIO DE SIMULACIÓN SOFTWARE FJ ===
+2026-11-23 19:48:06 | INFO | Cliente registrado: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 19:48:06 | INFO | Op 1: Registro cliente válido (C01) | Éxito: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 19:48:06 | ERROR | Op 2: Registro cliente inválido | Error controlado: El nombre del cliente debe tener al menos 2 caracteres.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 11, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 44, in <lambda>
+    Cliente("C02", "A", "correo-no-valido", "123")
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 32, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 44, in nombre
+    raise DatoInvalidoError("El nombre del cliente debe tener al menos 2 caracteres.")
+exceptions.DatoInvalidoError: El nombre del cliente debe tener al menos 2 caracteres.
+2026-11-23 19:48:06 | INFO | Cliente registrado: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 19:48:06 | INFO | Op 3: Registro cliente válido (C03) | Éxito: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 19:48:06 | INFO | Servicio registrado: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 19:48:06 | INFO | Op 4: Crear servicio ReservaSala (SALA-1) | Éxito: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 19:48:06 | INFO | Servicio registrado: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 19:48:06 | INFO | Op 5: Crear servicio AlquilerEquipo (EQ-LAP) | Éxito: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 19:48:06 | INFO | Servicio registrado: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 19:48:06 | INFO | Op 6: Crear servicio AsesoriaEspecializada (ASE-ARQ) | Éxito: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 19:48:06 | ERROR | Op 7: Crear servicio inválido (tarifa <= 0) | Error controlado: La tarifa base debe ser un número mayor que 0.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 11, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 89, in <lambda>
+    ReservaSala("SALA-ERR", "Sala Inválida", -50.0, capacidad_personas=5)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 108, in __init__
+    super().__init__(codigo, nombre, tarifa_base, disponible)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 24, in __init__
+    raise DatoInvalidoError("La tarifa base debe ser un número mayor que 0.")
+exceptions.DatoInvalidoError: La tarifa base debe ser un número mayor que 0.
+2026-11-23 19:48:06 | INFO | Reserva creada: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 19:48:06 | INFO | Op 8: Reserva exitosa de Sala (R01) | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 19:48:06 | INFO | Op 9: Confirmar y procesar reserva R01 | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PROCESADA | Cobro final: $257.04
+2026-11-23 19:48:06 | ERROR | Op 10: Intentar cancelar reserva ya PROCESADA (R01) | Error controlado: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 11, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 115, in <lambda>
+    lambda: sistema.reservas[0].cancelar(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 85, in cancelar
+    raise OperacionNoPermitidaError(
+exceptions.OperacionNoPermitidaError: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+2026-11-23 19:48:06 | ERROR | Op 11: Reserva fallida por stock insuficiente (R02) | Error controlado: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 36, in __init__
+    costo = servicio.calcular_costo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 194, in calcular_costo
+    self.validar_parametros(duracion_horas, unidades)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 170, in validar_parametros
+    raise ServicioNoDisponibleError(
+exceptions.ServicioNoDisponibleError: Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 161, in crear_reserva
+    reserva = Reserva(
+              ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 43, in __init__
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: No se pudo crear la reserva 'R02': Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 11, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 122, in <lambda>
+    lambda: sistema.crear_reserva("R02", "C03", "EQ-LAP", duracion_horas=4, unidades=10).resumen(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 171, in crear_reserva
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+2026-11-23 19:48:06 | INFO | Reserva creada: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: PENDIENTE
+2026-11-23 19:48:06 | INFO | Op 12: Reserva y confirmación de Asesoría (R03) | Éxito: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: CONFIRMADA
+2026-11-23 19:48:06 | INFO | === FIN DE SIMULACIÓN SOFTWARE FJ ===
+2026-11-23 19:51:30 | INFO | === INICIO DE SIMULACIÓN SOFTWARE FJ ===
+2026-11-23 19:51:30 | INFO | Cliente registrado: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 19:51:30 | INFO | Op 1: Registro cliente válido (C01) | Éxito: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 19:51:30 | ERROR | Op 2: Registro cliente inválido | Error controlado: El nombre del cliente debe tener al menos 2 caracteres.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 52, in <lambda>
+    Cliente("C02", "A", "correo-no-valido", "123")
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 32, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 44, in nombre
+    raise DatoInvalidoError("El nombre del cliente debe tener al menos 2 caracteres.")
+exceptions.DatoInvalidoError: El nombre del cliente debe tener al menos 2 caracteres.
+2026-11-23 19:51:30 | INFO | Cliente registrado: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 19:51:30 | INFO | Op 3: Registro cliente válido (C03) | Éxito: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 19:51:30 | INFO | Servicio registrado: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 19:51:30 | INFO | Op 4: Crear servicio ReservaSala (SALA-1) | Éxito: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 19:51:30 | INFO | Servicio registrado: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 19:51:30 | INFO | Op 5: Crear servicio AlquilerEquipo (EQ-LAP) | Éxito: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 19:51:30 | INFO | Servicio registrado: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 19:51:30 | INFO | Op 6: Crear servicio AsesoriaEspecializada (ASE-ARQ) | Éxito: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 19:51:30 | ERROR | Op 7: Crear servicio inválido (tarifa <= 0) | Error controlado: La tarifa base debe ser un número mayor que 0.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 97, in <lambda>
+    ReservaSala("SALA-ERR", "Sala Inválida", -50.0, capacidad_personas=5)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 108, in __init__
+    super().__init__(codigo, nombre, tarifa_base, disponible)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 24, in __init__
+    raise DatoInvalidoError("La tarifa base debe ser un número mayor que 0.")
+exceptions.DatoInvalidoError: La tarifa base debe ser un número mayor que 0.
+2026-11-23 19:51:30 | INFO | Reserva creada: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 19:51:30 | INFO | Op 8: Reserva exitosa de Sala (R01) | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 19:51:30 | INFO | Op 9: Confirmar y procesar reserva R01 | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PROCESADA | Cobro final: $257.04
+2026-11-23 19:51:30 | ERROR | Op 10: Intentar cancelar reserva ya PROCESADA (R01) | Error controlado: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 123, in <lambda>
+    lambda: sistema.reservas[0].cancelar(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 85, in cancelar
+    raise OperacionNoPermitidaError(
+exceptions.OperacionNoPermitidaError: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+2026-11-23 19:51:30 | ERROR | Op 11: Reserva fallida por stock insuficiente (R02) | Error controlado: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 36, in __init__
+    costo = servicio.calcular_costo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 194, in calcular_costo
+    self.validar_parametros(duracion_horas, unidades)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 170, in validar_parametros
+    raise ServicioNoDisponibleError(
+exceptions.ServicioNoDisponibleError: Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 161, in crear_reserva
+    reserva = Reserva(
+              ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 43, in __init__
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: No se pudo crear la reserva 'R02': Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 130, in <lambda>
+    lambda: sistema.crear_reserva("R02", "C03", "EQ-LAP", duracion_horas=4, unidades=10).resumen(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 171, in crear_reserva
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+2026-11-23 19:51:30 | INFO | Reserva creada: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: PENDIENTE
+2026-11-23 19:51:30 | INFO | Op 12: Reserva y confirmación de Asesoría (R03) | Éxito: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: CONFIRMADA
+2026-11-23 19:51:30 | INFO | === FIN DE SIMULACIÓN SOFTWARE FJ ===
+2026-11-23 19:51:42 | INFO | === INICIO DE SIMULACIÓN SOFTWARE FJ ===
+2026-11-23 19:51:42 | INFO | Cliente registrado: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 19:51:42 | INFO | Op 1: Registro cliente válido (C01) | Éxito: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 19:51:42 | ERROR | Op 2: Registro cliente inválido | Error controlado: El nombre del cliente debe tener al menos 2 caracteres.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 52, in <lambda>
+    Cliente("C02", "A", "correo-no-valido", "123")
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 32, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 44, in nombre
+    raise DatoInvalidoError("El nombre del cliente debe tener al menos 2 caracteres.")
+exceptions.DatoInvalidoError: El nombre del cliente debe tener al menos 2 caracteres.
+2026-11-23 19:51:42 | INFO | Cliente registrado: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 19:51:42 | INFO | Op 3: Registro cliente válido (C03) | Éxito: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 19:51:42 | INFO | Servicio registrado: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 19:51:42 | INFO | Op 4: Crear servicio ReservaSala (SALA-1) | Éxito: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 19:51:42 | INFO | Servicio registrado: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 19:51:42 | INFO | Op 5: Crear servicio AlquilerEquipo (EQ-LAP) | Éxito: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 19:51:42 | INFO | Servicio registrado: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 19:51:42 | INFO | Op 6: Crear servicio AsesoriaEspecializada (ASE-ARQ) | Éxito: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 19:51:42 | ERROR | Op 7: Crear servicio inválido (tarifa <= 0) | Error controlado: La tarifa base debe ser un número mayor que 0.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 97, in <lambda>
+    ReservaSala("SALA-ERR", "Sala Inválida", -50.0, capacidad_personas=5)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 108, in __init__
+    super().__init__(codigo, nombre, tarifa_base, disponible)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 24, in __init__
+    raise DatoInvalidoError("La tarifa base debe ser un número mayor que 0.")
+exceptions.DatoInvalidoError: La tarifa base debe ser un número mayor que 0.
+2026-11-23 19:51:42 | INFO | Reserva creada: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 19:51:42 | INFO | Op 8: Reserva exitosa de Sala (R01) | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 19:51:42 | INFO | Op 9: Confirmar y procesar reserva R01 | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PROCESADA | Cobro final: $257.04
+2026-11-23 19:51:42 | ERROR | Op 10: Intentar cancelar reserva ya PROCESADA (R01) | Error controlado: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 123, in <lambda>
+    lambda: sistema.reservas[0].cancelar(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 85, in cancelar
+    raise OperacionNoPermitidaError(
+exceptions.OperacionNoPermitidaError: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+2026-11-23 19:51:42 | ERROR | Op 11: Reserva fallida por stock insuficiente (R02) | Error controlado: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 36, in __init__
+    costo = servicio.calcular_costo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 194, in calcular_costo
+    self.validar_parametros(duracion_horas, unidades)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 170, in validar_parametros
+    raise ServicioNoDisponibleError(
+exceptions.ServicioNoDisponibleError: Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 161, in crear_reserva
+    reserva = Reserva(
+              ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 43, in __init__
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: No se pudo crear la reserva 'R02': Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 130, in <lambda>
+    lambda: sistema.crear_reserva("R02", "C03", "EQ-LAP", duracion_horas=4, unidades=10).resumen(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 171, in crear_reserva
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+2026-11-23 19:51:42 | INFO | Reserva creada: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: PENDIENTE
+2026-11-23 19:51:42 | INFO | Op 12: Reserva y confirmación de Asesoría (R03) | Éxito: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: CONFIRMADA
+2026-11-23 19:51:42 | INFO | === FIN DE SIMULACIÓN SOFTWARE FJ ===
+2026-11-23 20:06:27 | INFO | === INICIO DE SIMULACIÓN SOFTWARE FJ ===
+2026-11-23 20:06:27 | INFO | Cliente registrado: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 20:06:27 | INFO | Op 1: Registro cliente válido (C01) | Éxito: Cliente [C01] Laura Gómez | Correo: laura.gomez@empresa.com | Tel: 3104567890 | Activo
+2026-11-23 20:06:27 | ERROR | Op 2: Registro cliente inválido | Error controlado: El nombre del cliente debe tener al menos 2 caracteres.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 52, in <lambda>
+    Cliente("C02", "A", "correo-no-valido", "123")
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 32, in __init__
+    self.nombre = nombre
+    ^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\entities.py", line 44, in nombre
+    raise DatoInvalidoError("El nombre del cliente debe tener al menos 2 caracteres.")
+exceptions.DatoInvalidoError: El nombre del cliente debe tener al menos 2 caracteres.
+2026-11-23 20:06:27 | INFO | Cliente registrado: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 20:06:27 | INFO | Op 3: Registro cliente válido (C03) | Éxito: Cliente [C03] Carlos Ruiz | Correo: carlos.ruiz@pyme.co | Tel: 3209876543 | Activo
+2026-11-23 20:06:27 | INFO | Servicio registrado: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 20:06:27 | INFO | Op 4: Crear servicio ReservaSala (SALA-1) | Éxito: [Sala] SALA-1 - Sala de Juntas Norte | Capacidad: 12 pers. | Tarifa/h: $80.00 | Disponible
+2026-11-23 20:06:27 | INFO | Servicio registrado: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 20:06:27 | INFO | Op 5: Crear servicio AlquilerEquipo (EQ-LAP) | Éxito: [Equipo] EQ-LAP - Laptop Desarrollador i7 | Stock: 3 und. | Tarifa/h/und: $25.00 | Disponible
+2026-11-23 20:06:27 | INFO | Servicio registrado: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 20:06:27 | INFO | Op 6: Crear servicio AsesoriaEspecializada (ASE-ARQ) | Éxito: [Asesoría] ASE-ARQ - Arquitectura de Software | Área: Backend & POO | Tarifa base: $120.00 | Disponible
+2026-11-23 20:06:27 | ERROR | Op 7: Crear servicio inválido (tarifa <= 0) | Error controlado: La tarifa base debe ser un número mayor que 0.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 97, in <lambda>
+    ReservaSala("SALA-ERR", "Sala Inválida", -50.0, capacidad_personas=5)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 108, in __init__
+    super().__init__(codigo, nombre, tarifa_base, disponible)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 24, in __init__
+    raise DatoInvalidoError("La tarifa base debe ser un número mayor que 0.")
+exceptions.DatoInvalidoError: La tarifa base debe ser un número mayor que 0.
+2026-11-23 20:06:27 | INFO | Reserva creada: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 20:06:27 | INFO | Op 8: Reserva exitosa de Sala (R01) | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PENDIENTE
+2026-11-23 20:06:27 | INFO | Op 9: Confirmar y procesar reserva R01 | Éxito: Reserva [R01] | Cliente: Laura Gómez | Servicio: SALA-1 | Duración: 3.0h | Total: $257.04 | Estado: PROCESADA | Cobro final: $257.04
+2026-11-23 20:06:27 | ERROR | Op 10: Intentar cancelar reserva ya PROCESADA (R01) | Error controlado: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 123, in <lambda>
+    lambda: sistema.reservas[0].cancelar(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 85, in cancelar
+    raise OperacionNoPermitidaError(
+exceptions.OperacionNoPermitidaError: No se puede cancelar la reserva 'R01' porque ya fue PROCESADA.
+2026-11-23 20:06:27 | ERROR | Op 11: Reserva fallida por stock insuficiente (R02) | Error controlado: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 36, in __init__
+    costo = servicio.calcular_costo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 194, in calcular_costo
+    self.validar_parametros(duracion_horas, unidades)
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\services.py", line 170, in validar_parametros
+    raise ServicioNoDisponibleError(
+exceptions.ServicioNoDisponibleError: Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 161, in crear_reserva
+    reserva = Reserva(
+              ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 43, in __init__
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: No se pudo crear la reserva 'R02': Stock insuficiente para 'EQ-LAP': solicitados 10, disponibles 3.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 19, in ejecutar_operacion
+    resultado = accion()
+                ^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\main.py", line 130, in <lambda>
+    lambda: sistema.crear_reserva("R02", "C03", "EQ-LAP", duracion_horas=4, unidades=10).resumen(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\UNAD\INGENIERIA DE SISTEMAS\3 SEMESTRE\progracion\software_fj\booking.py", line 171, in crear_reserva
+    raise ReservaInvalidaError(
+exceptions.ReservaInvalidaError: Fallo al registrar la reserva 'R02' para el cliente 'C03'.
+2026-11-23 20:06:27 | INFO | Reserva creada: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: PENDIENTE
+2026-11-23 20:06:27 | INFO | Op 12: Reserva y confirmación de Asesoría (R03) | Éxito: Reserva [R03] | Cliente: Carlos Ruiz | Servicio: ASE-ARQ | Duración: 2.5h | Total: $303.45 | Estado: CONFIRMADA
+2026-11-23 20:06:27 | INFO | === FIN DE SIMULACIÓN SOFTWARE FJ ===
